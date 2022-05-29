@@ -1,3 +1,35 @@
 <resources>
-    <string name="app_name">Submission1</string>
+    <string name="app_name">Submission 1</string>
+    <string name="dicoding">Dicoding</string>
+
+    <!-- Authentication -->
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="title_login">Welcome!</string>
+    <string name="subtitle_login">Just one minute away to see Dicoding Stories</string>
+    <string name="title_register">Create an account!</string>
+    <string name="subtitle_register">Fill this form to create a new account</string>
+    <string name="info_login">Don\'t have an account?</string>
+    <string name="info_register">Already have an account?</string>
+    <string name="copyright">© 2022 Bintang</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="email_invalid">Email is not valid</string>
+    <string name="password_invalid">Password should be at least 6 characters</string>
+    <string name="login_invalid">Email or Password is not valid</string>
+    <string name="login_valid">Login Success</string>
+    <string name="register_invalid">Email or Password is not valid</string>
+    <string name="register_valid">Register Success</string>
+
+    <!-- Home -->
+    <string name="logout">Logout</string>
+    <string name="language">Language</string>
+
+    <!-- Story -->
+    <string name="story_username">Username</string>
+    <string name="story_desc">Description</string>
+    <string name="story_image">Image</string>
+    <string name="no_story">There is no data</string>
+
 </resources>
