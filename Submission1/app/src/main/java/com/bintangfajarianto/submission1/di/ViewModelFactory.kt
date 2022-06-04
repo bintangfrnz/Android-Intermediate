@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bintangfajarianto.submission1.data.repository.Repository
 import com.bintangfajarianto.submission1.ui.authentication.login.LoginViewModel
 import com.bintangfajarianto.submission1.ui.authentication.register.RegisterViewModel
-import com.bintangfajarianto.submission1.ui.detail.DetailViewModel
 import com.bintangfajarianto.submission1.ui.home.HomeViewModel
+import com.bintangfajarianto.submission1.ui.publish.PublishViewModel
 import com.bintangfajarianto.submission1.ui.splash.SplashViewModel
 
 class ViewModelFactory private constructor(private val repository: Repository)
@@ -15,18 +15,24 @@ class ViewModelFactory private constructor(private val repository: Repository)
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SplashViewModel::class.java)) {
-            return SplashViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-            return DetailViewModel() as T
-        } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return RegisterViewModel() as T
+        when {
+            modelClass.isAssignableFrom(SplashViewModel::class.java) -> {
+                return SplashViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                return HomeViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PublishViewModel::class.java) -> {
+                return PublishViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                return LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                return RegisterViewModel() as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
-        throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 
     companion object {

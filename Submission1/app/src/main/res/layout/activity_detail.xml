@@ -2,8 +2,114 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/Parent"
+    android:background="@color/white"
     tools:context=".ui.detail.DetailActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/Content.SubTitle"
+            android:text="@string/detail_title" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RowContent"
+            android:paddingTop="4dp"
+            android:paddingBottom="16dp" >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/detail_avatar"
+                style="@style/CircleButton.Avatar"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:transitionName="avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/img_default_profile" />
+
+            <TextView
+                android:id="@+id/detail_username"
+                style="@style/Content.Small.Bold"
+                android:layout_marginStart="16dp"
+                android:text="@string/username"
+                android:transitionName="username"
+                app:layout_constraintStart_toEndOf="@+id/detail_avatar"
+                app:layout_constraintTop_toTopOf="@+id/detail_avatar"
+                app:layout_constraintBottom_toBottomOf="@id/detail_avatar" />
+
+            <ImageView
+                android:id="@+id/detail_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/image_desc"
+                android:layout_marginTop="12dp"
+                android:transitionName="image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detail_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/img_template" />
+
+            <androidx.appcompat.widget.AppCompatToggleButton
+                android:id="@+id/like_button"
+                style="@style/CircleButton.Action"
+                android:background="@drawable/selector_btn_like"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detail_image" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/comment_button"
+                style="@style/CircleButton.Action"
+                android:background="@drawable/ic_btn_comment"
+                app:layout_constraintStart_toEndOf="@id/like_button"
+                app:layout_constraintTop_toBottomOf="@id/detail_image" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/share_button"
+                style="@style/CircleButton.Action"
+                android:background="@drawable/ic_btn_share"
+                app:layout_constraintStart_toEndOf="@id/comment_button"
+                app:layout_constraintTop_toBottomOf="@id/detail_image" />
+
+            <TextView
+                android:id="@+id/detail_desc"
+                style="@style/Content.Small"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/desc"
+                android:transitionName="desc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/like_button" />
+
+            <TextView
+                android:id="@+id/detail_date"
+                style="@style/Content.Mini"
+                android:text="@string/date"
+                android:transitionName="date"
+                app:layout_constraintStart_toStartOf="@id/detail_desc"
+                app:layout_constraintTop_toBottomOf="@id/detail_desc" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

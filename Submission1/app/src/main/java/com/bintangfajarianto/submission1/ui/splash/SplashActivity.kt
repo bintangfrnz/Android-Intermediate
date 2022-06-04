@@ -12,7 +12,6 @@ import com.bintangfajarianto.submission1.databinding.ActivitySplashBinding
 import com.bintangfajarianto.submission1.di.ViewModelFactory
 import com.bintangfajarianto.submission1.ui.authentication.AuthActivity
 import com.bintangfajarianto.submission1.ui.home.HomeActivity
-import com.bintangfajarianto.submission1.ui.home.HomeActivity.Companion.EXTRA_TOKEN
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -43,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
                 Log.i(TAG, "Home")
 
                 val intentMain = Intent(this@SplashActivity, HomeActivity::class.java)
-                intentMain.putExtra(EXTRA_TOKEN, token)
+                intentMain.putExtra(HomeActivity.EXTRA_TOKEN, token)
                 startActivity(intentMain)
                 finish()
             }

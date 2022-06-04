@@ -2,8 +2,148 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/Parent"
+    android:background="@color/white"
     tools:context=".ui.publish.PublishActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <TextView
+            style="@style/Content.SubTitle"
+            android:text="@string/publish" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/RowContent"
+            android:paddingBottom="16dp" >
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_left"
+                android:orientation="vertical"
+                style="@style/Content"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_right"
+                android:orientation="vertical"
+                style="@style/Content"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:background="@color/light"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/img_publish" />
+
+            <ImageView
+                android:id="@+id/img_publish"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:contentDescription="@string/image_desc"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_publish"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@id/guideline_left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_right" />
+
+            <TextView
+                android:id="@+id/select_image"
+                style="@style/Content.Small"
+                android:text="@string/select_image"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/img_publish"/>
+
+            <LinearLayout
+                android:id="@+id/buttons"
+                style="@style/Content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toEndOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/select_image"
+                app:layout_constraintEnd_toStartOf="@id/guideline_right" >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_camera"
+                    style="@style/CircleButton"
+                    android:background="@drawable/bg_button_camera" />
+
+                <View
+                    android:layout_width="50dp"
+                    android:layout_height="0dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_gallery"
+                    style="@style/CircleButton"
+                    android:background="@drawable/bg_button_gallery" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/describe"
+                style="@style/Content.Small"
+                android:text="@string/publish_description"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toEndOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/buttons"/>
+
+            <EditText
+                android:id="@+id/publish_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:labelFor="@id/publish_description"
+                app:layout_constraintStart_toStartOf="@+id/img_publish"
+                app:layout_constraintTop_toBottomOf="@+id/describe"
+                app:layout_constraintEnd_toEndOf="@id/img_publish" />
+
+            <Button
+                android:id="@+id/btn_publish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/upload"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                app:layout_constraintStart_toEndOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/publish_description"
+                app:layout_constraintEnd_toStartOf="@id/guideline_right" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

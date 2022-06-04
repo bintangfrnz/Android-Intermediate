@@ -7,22 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bintangfajarianto.submission1.R
 import com.bintangfajarianto.submission1.databinding.LoginFragmentBinding
 import com.bintangfajarianto.submission1.di.ViewModelFactory
 import com.bintangfajarianto.submission1.ui.home.HomeActivity
-import com.bintangfajarianto.submission1.ui.home.HomeActivity.Companion.EXTRA_TOKEN
 import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment() {
 
+    private lateinit var loginViewModel: LoginViewModel
+
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
-
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(requireContext())
-    private val loginViewModel: LoginViewModel by viewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +33,23 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireContext())
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+
         // Show Loading
         loginViewModel.isLoading.observe(viewLifecycleOwner) {
             setLoading(it)
         }
 
-        // Set Up Action
+        setUpAction()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setUpAction() {
         binding.apply {
             btnLogin.setOnClickListener {
                 if (emailField.text.toString().isNotBlank()
@@ -64,11 +73,10 @@ class LoginFragment : Fragment() {
                     loginViewModel.responseLogin.observe(viewLifecycleOwner) {
                         Toast.makeText(requireContext(), R.string.login_valid, Toast.LENGTH_SHORT).show()
 
-                        Intent(requireContext(), HomeActivity::class.java).also { intent ->
-                            intent.putExtra(EXTRA_TOKEN, it.loginResult.token)
-                            startActivity(intent)
-                            requireActivity().finish()
-                        }
+                        val intentHome = Intent(requireContext(), HomeActivity::class.java)
+                        intentHome.putExtra(HomeActivity.EXTRA_TOKEN, it.loginResult.token)
+                        startActivity(intentHome)
+                        requireActivity().finish()
                     }
                 } else {
                     Toast.makeText(
@@ -83,11 +91,6 @@ class LoginFragment : Fragment() {
                 Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registerFragment)
             )
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun setLoading(isLoading: Boolean) {

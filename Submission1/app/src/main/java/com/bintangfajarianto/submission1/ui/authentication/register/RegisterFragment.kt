@@ -36,7 +36,15 @@ class RegisterFragment : Fragment() {
             setLoading(it)
         }
 
-        // Set Up Action
+        setUpAction()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setUpAction() {
         binding.apply {
             btnRegister.setOnClickListener {
                 if (nameField.text.toString().isNotBlank()
@@ -60,14 +68,14 @@ class RegisterFragment : Fragment() {
 
                     // Handle Success Responses
                     registerViewModel.responseRegister.observe(viewLifecycleOwner) {
-                        Toast.makeText(requireContext(), R.string.login_valid, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), R.string.register_valid, Toast.LENGTH_SHORT).show()
 
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     }
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        R.string.login_invalid,
+                        R.string.register_invalid,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -77,11 +85,6 @@ class RegisterFragment : Fragment() {
                 Navigation.createNavigateOnClickListener(R.id.action_registerFragment_to_loginFragment)
             )
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun setLoading(isLoading: Boolean) {
