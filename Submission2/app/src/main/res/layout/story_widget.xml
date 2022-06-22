@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Parent"
+    android:theme="@style/Theme.Submission2.AppWidgetContainer">
+
+    <LinearLayout
+        style="@style/Parent"
+        android:orientation="vertical"
+        android:weightSum="10" >
+
+        <StackView
+            android:id="@+id/stack_view"
+            style="@style/RowContent"
+            android:layout_weight="9"
+            android:loopViews="true" />
+
+        <TextView
+            android:id="@+id/banner_text"
+            style="@style/Content.Title"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:paddingHorizontal="16dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:background="@color/light" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/empty_view"
+        style="@style/Content.Title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/gray"
+        android:text="@string/no_story"
+        android:visibility="gone"
+        tools:visibility="gone"/>
+
+</FrameLayout>

@@ -7,15 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bintangfajarianto.submission1.R
-import com.bintangfajarianto.submission1.databinding.RegisterFragmentBinding
+import com.bintangfajarianto.submission1.databinding.FragmentRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : Fragment() {
 
-    private var _binding: RegisterFragmentBinding? = null
+    private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
     private val registerViewModel by activityViewModels<RegisterViewModel>()
@@ -24,7 +26,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = RegisterFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -70,7 +72,8 @@ class RegisterFragment : Fragment() {
                     registerViewModel.responseRegister.observe(viewLifecycleOwner) {
                         Toast.makeText(requireContext(), R.string.register_valid, Toast.LENGTH_SHORT).show()
 
-                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                        val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                        findNavController().safeNavigate(action)
                     }
                 } else {
                     Toast.makeText(
@@ -94,6 +97,12 @@ class RegisterFragment : Fragment() {
             emailField.isEnabled = !isLoading
             passwordField.isEnabled = !isLoading
             btnRegister.isEnabled = !isLoading
+        }
+    }
+
+    private fun NavController.safeNavigate(direction: NavDirections) {
+        currentDestination?.getAction(direction.actionId)?.run {
+            navigate(direction)
         }
     }
 }

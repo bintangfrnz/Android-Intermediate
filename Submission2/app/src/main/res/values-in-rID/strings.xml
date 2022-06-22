@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Cerita Dicoding</string>
+    <string name="dicoding">Dicoding</string>
+    <string name="token">Bearer %s</string>
+
+    <!-- Authentication -->
+    <string name="login">Masuk</string>
+    <string name="title_login">Selamat Datang!</string>
+    <string name="subtitle_login">Satu langkah lagi menuju Cerita Dicoding</string>
+    <string name="info_login">Belum punya akun?</string>
+    <string name="login_invalid">Email atau Password tidak valid</string>
+    <string name="login_valid">Berhasil Masuk</string>
+
+    <string name="register">Daftar</string>
+    <string name="title_register">Buat sebuah akun!</string>
+    <string name="subtitle_register">Isi form ini untuk membuat akun baru</string>
+    <string name="info_register">Sudah punya akun?</string>
+    <string name="register_invalid">Nama atau Email atau Password tidak valid</string>
+    <string name="register_valid">Berhasil Daftar</string>
+
+    <string name="copyright">© 2022 Bintang</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="email_invalid">Email tidak valid</string>
+    <string name="password_invalid">Password harus ≥ 6 karakter</string>
+
+    <!-- Home -->
+    <string name="logout">Keluar</string>
+    <string name="language">Bahasa</string>
+    <string name="logout_valid">Berhasil Keluar</string>
+
+    <!-- Story -->
+    <string name="username">Nama User</string>
+    <string name="desc">Deskripsi</string>
+    <string name="date">1 menit lalu</string>
+    <string name="image_desc">Deskripsi gambar</string>
+    <string name="no_story">Tidak ada data</string>
+    <string name="hit_like">Untuk fitur selanjutnya</string>
+    <string name="detail_title">Kiriman %s</string>
+    <string name="retry">Coba Lagi</string>
+
+    <!-- Publish -->
+    <string name="publish">Posting Cerita</string>
+    <string name="select_image">Pilih sebuah gambar dari</string>
+    <string name="publish_description">Deskripsikan pikiranmu</string>
+    <string name="upload">Unggah</string>
+    <string name="upload_valid">Postingan baru terkirim</string>
+    <string name="upload_invalid">Gambar atau Deskripsi kosong</string>
+
+</resources>

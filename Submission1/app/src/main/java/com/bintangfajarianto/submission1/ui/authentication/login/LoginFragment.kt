@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bintangfajarianto.submission1.R
-import com.bintangfajarianto.submission1.databinding.LoginFragmentBinding
+import com.bintangfajarianto.submission1.databinding.FragmentLoginBinding
 import com.bintangfajarianto.submission1.di.ViewModelFactory
 import com.bintangfajarianto.submission1.ui.home.HomeActivity
 import com.google.android.material.snackbar.Snackbar
@@ -19,14 +19,14 @@ class LoginFragment : Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
 
-    private var _binding: LoginFragmentBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = LoginFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 

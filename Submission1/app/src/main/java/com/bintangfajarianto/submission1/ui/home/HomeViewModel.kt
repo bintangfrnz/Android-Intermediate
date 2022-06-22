@@ -21,13 +21,7 @@ class HomeViewModel (private val repo: Repository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isRefresh = MutableLiveData<Boolean>()
-    val isRefresh: LiveData<Boolean> = _isRefresh
-
-    private val _isNoData = MutableLiveData<Boolean>()
-    val isNoData: LiveData<Boolean> = _isNoData
-
-    fun getAllStories(token: String) {
+    fun getAllStoriesByRefresh(token: String) {
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().getAllStories(
@@ -40,7 +34,6 @@ class HomeViewModel (private val repo: Repository) : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     _responseStories.value = responseBody!!
-                    _isNoData.value = responseBody.listStory.isNullOrEmpty()
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -48,32 +41,6 @@ class HomeViewModel (private val repo: Repository) : ViewModel() {
 
             override fun onFailure(call: Call<StoriesResponses>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
-            }
-        })
-    }
-
-    fun getAllStoriesByRefresh(token: String) {
-        _isRefresh.value = true
-
-        val client = ApiConfig.getApiService().getAllStories(
-            token, null, null
-        )
-
-        client.enqueue(object: Callback<StoriesResponses> {
-            override fun onResponse(call: Call<StoriesResponses>, response: Response<StoriesResponses>) {
-                _isRefresh.value = false
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    _responseStories.value = responseBody!!
-                    _isNoData.value = responseBody.listStory.isNullOrEmpty()
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<StoriesResponses>, t: Throwable) {
-                _isRefresh.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })

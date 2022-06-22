@@ -1,14 +1,15 @@
 package com.bintangfajarianto.submission1.utils
 
-import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Matrix
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Environment
-import com.bintangfajarianto.submission1.R
+import coil.ImageLoader
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,15 +27,13 @@ object ImageHandler {
         return File.createTempFile(timeStamp, SUFFIX, storageDir)
     }
 
-    fun createFile(application: Application): File {
-        val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
-            File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
-        }
+    suspend fun urlToBitmap(url: String, context: Context) : Bitmap {
+        val loading = ImageLoader(context)
+        val request = ImageRequest.Builder(context)
+            .data(url)
+            .build()
 
-        val outputDirectory =
-            if (mediaDir != null && mediaDir.exists()) mediaDir else application.filesDir
-
-        return File(outputDirectory, "$timeStamp$SUFFIX")
+        return ((loading.execute(request) as SuccessResult).drawable as BitmapDrawable).bitmap
     }
 
     fun uriToFile(selectedImg: Uri, context: Context): File {

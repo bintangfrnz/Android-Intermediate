@@ -4,19 +4,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bintangfajarianto.submission1.R
 import com.bintangfajarianto.submission1.adapter.StoryAdapter
+import com.bintangfajarianto.submission1.data.model.HomeWidgetItems
+import com.bintangfajarianto.submission1.data.model.RemoteItem
 import com.bintangfajarianto.submission1.data.remote.response.ListStoryItem
 import com.bintangfajarianto.submission1.databinding.ActivityHomeBinding
 import com.bintangfajarianto.submission1.di.ViewModelFactory
 import com.bintangfajarianto.submission1.ui.authentication.AuthActivity
 import com.bintangfajarianto.submission1.ui.publish.PublishActivity
+import com.bintangfajarianto.submission1.utils.ImageHandler
 
 class HomeActivity : AppCompatActivity() {
 
@@ -39,25 +44,43 @@ class HomeActivity : AppCompatActivity() {
         // Show Loading & Refresh
         homeViewModel.isLoading.observe(this) {
             showLoading(it)
-        }
-        homeViewModel.isRefresh.observe(this) {
             showRefresh(it)
         }
 
         // Get and Use Token
         token = intent.getStringExtra(EXTRA_TOKEN).toString()
-        homeViewModel.getAllStories(resources.getString(R.string.token, token))
 
         homeViewModel.responseStories.observe(this) {
-            homeViewModel.isNoData.observe(this) { isNoData ->
-                setDisplayNoData(isNoData)
-            }
+            setDisplayNoData(it.listStory.isEmpty())
 
             val listStories = ArrayList<ListStoryItem>()
-            for (user in it.listStory)
+
+            for (user in it.listStory) {
                 listStories.add(user)
+            }
 
             showRecyclerView(listStories)
+
+            // Fill HomeWidget
+            lifecycleScope.launchWhenResumed {
+                val listRemoteItem = ArrayList<RemoteItem>()
+
+                Log.i("HomeWidget", "Start Fetching")
+
+                for (user in it.listStory) {
+                    listRemoteItem.add(
+                        RemoteItem(
+                            user.name,
+                            ImageHandler.urlToBitmap(user.photoUrl, applicationContext)
+                        )
+                    )
+                }
+                HomeWidgetItems.remoteItems = listRemoteItem
+
+                Log.i("HomeWidget", "Done")
+
+                // TODO: Notify onDataSetChange to RemoteAdapter
+            }
         }
 
         setUpAction()

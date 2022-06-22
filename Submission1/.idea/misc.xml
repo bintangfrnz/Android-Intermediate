@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.25410614013671873" />
+        <entry key="app/src/main/res/drawable-v21/app_widget_background.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable-v24/bg_edit_text_focused.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/bg_button.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/bg_button_camera.xml" value="0.1065" />
@@ -37,12 +39,16 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22464026851930474" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25849494381227356" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.22056159420289856" />
-        <entry key="app/src/main/res/layout/activity_publish.xml" value="0.31475982666015623" />
+        <entry key="app/src/main/res/layout/activity_publish.xml" value="0.18771667480468746" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.195538330078125" />
         <entry key="app/src/main/res/layout/card_story.xml" value="0.28141284466764926" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.14001611812256556" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.20422576904296885" />
         <entry key="app/src/main/res/layout/story.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/story_widget.xml" value="0.17225799560546876" />
+        <entry key="app/src/main/res/layout/story_widget_item.xml" value="0.24706726074218754" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.2487584431966146" />
         <entry key="app/src/main/res/xml/file_paths.xml" value="0.22056159420289856" />
